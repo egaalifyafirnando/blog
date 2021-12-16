@@ -6,6 +6,11 @@
     </div>
     <div class="table-responsive">
         <a class="btn btn-primary mb-3" href="/dashboard/posts/create">Create new post</a>
+        @if (session()->has('success'))
+            <div class="alert alert-success" role="alert">
+                {{ session('success') }}
+            </div>
+        @endif
         <table class="table table-striped table-sm">
             <thead>
                 <tr>
@@ -24,8 +29,14 @@
                         <td>
                             <a class="badge bg-info" href="/dashboard/posts/{{ $post->slug }}"><span
                                     data-feather="eye"></span></a>
-                            <a class="badge bg-warning" href=""><span data-feather="edit"></span></a>
-                            <a class="badge bg-danger" href=""><span data-feather="trash-2"></span></a>
+                            <a class="badge bg-warning" href="/dashboard/posts/{{ $post->slug }}/edit"><span
+                                    data-feather="edit"></span></a>
+                            <form class="d-inline" action="/dashboard/posts/{{ $post->slug }}" method="post">
+                                @csrf
+                                @method('delete')
+                                <button class="badge bg-danger border-0" onclick="return confirm('Are you sure?')"><span
+                                        data-feather="trash-2"></span></button>
+                            </form>
                     </tr>
                 @endforeach
 
