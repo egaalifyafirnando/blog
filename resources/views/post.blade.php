@@ -11,8 +11,13 @@
                     in <a class="text-decoration-none"
                         href="/posts?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
                 </h6>
-                <img src="https://source.unsplash.com/1200x400/?{{ $post->category->name }}" alt=""
-                    class="img-fluid rounded">
+                @if ($post->image)
+                    <div class="rounded-bottom" style="max-height:400px; overflow:hidden;">
+                        <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid rounded">
+                    </div>
+                @else
+                    <img src="https://source.unsplash.com/1200x400/?{{ $post->category->name }}" class="img-fluid rounded">
+                @endif
                 <article class="my-5">
                     {!! $post->body !!}
                 </article>

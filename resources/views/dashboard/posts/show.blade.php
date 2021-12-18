@@ -15,8 +15,15 @@
                     <button class="btn btn-danger my-4" onclick="return confirm('Are you sure?')"><span
                             data-feather="trash-2"></span> Delete</button>
                 </form>
+                @if ($post->image)
+                    <div class="rounded-bottom" style="max-height:400px; overflow:hidden;">
+                        <img src="{{ asset('storage/' . $post->image) }}" class="img-fluid rounded">
+                    </div>
+                @else
+                    <img src="https://source.unsplash.com/1200x400/?{{ $post->category->name }}"
+                        class="img-fluid rounded">
+                @endif
 
-                <img src="https://source.unsplash.com/1200x400/?{{ $post->category->name }}" class="img-fluid rounded">
                 <article class="my-5">
                     {!! $post->body !!}
                 </article>
