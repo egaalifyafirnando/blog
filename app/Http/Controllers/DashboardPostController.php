@@ -56,7 +56,6 @@ class DashboardPostController extends Controller
         $validatedData['user_id'] = auth()->user()->id;
         $validatedData['excerpt'] = Str::limit(strip_tags($request->body), 150, '...');
 
-
         Post::create($validatedData);
         return redirect('/dashboard/posts')->with('success', 'New post has been added!');
     }
@@ -110,16 +109,22 @@ class DashboardPostController extends Controller
             'body' => 'required'
         ];
 
+        // jika request slug tidak sama dengan slug yang ada di database, maka buat unik
         if ($request->slug != $post->slug) {
             $rules['slug'] = 'required|unique:posts';
         }
 
+        // validasi data request
         $validatedData = $request->validate($rules);
 
+        // jika terdapat request berupa image
         if ($request->file('image')) {
+            // jika terdapat image lama
             if ($request->oldImage) {
+                // maka delete gambar lama
                 Storage::delete($request->oldImage);
             }
+            // maka data image yang telah tervalidasi simpan ke folder post-images
             $validatedData['image'] = $request->file('image')->store('post-images');
         }
 
@@ -139,7 +144,9 @@ class DashboardPostController extends Controller
      */
     public function destroy(Post $post)
     {
+        // jika terdapat image
         if ($post->image) {
+            // maka delete image
             Storage::delete($post->image);
         }
         $post = Post::findOrFail($post->id);
@@ -147,6 +154,7 @@ class DashboardPostController extends Controller
         return redirect('/dashboard/posts')->with('success', 'Post has been deleted!');
     }
 
+    // sluggable
     public function checkSlug(Request $request)
     {
         $slug = SlugService::createSlug(Post::class, 'slug', $request->title);

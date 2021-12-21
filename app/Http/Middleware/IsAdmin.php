@@ -16,7 +16,9 @@ class IsAdmin
      */
     public function handle(Request $request, Closure $next)
     {
+        // jika belum login atau user bukan admin
         if (!auth()->check() || !auth()->user()->is_admin) {
+            // maka abort ke 403
             abort(403);
         }
 

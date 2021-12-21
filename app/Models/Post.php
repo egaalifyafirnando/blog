@@ -10,31 +10,27 @@ class Post extends Model
 {
     use HasFactory, Sluggable;
 
-    protected $guarded = [
-        'id'
-    ];
+    protected $guarded = ['id'];
 
-    protected $with = [
-        'category', 'author'
-    ];
+    protected $with = ['category', 'author'];
 
 
     public function scopeFilter($query, array $filters)
     {
         // cara 1
+        // jika didalam variable filters ada 'search', jika ada ambil filter 'search nya, jika tidak ada 'false' 
         // if (isset($filters['search']) ? $filters['search'] : false) {
         //     return $query->where('title', 'like', '%' . $filters['search'] . '%')
         //         ->orWhere('body', 'like', '%' . $filters['search'] . '%');
         // }
 
 
-        // cara 2
-        // null coalesing operator
+        // cara 2 menggunakan query when karena menggunakan beberapa query secara langsung
+        // null coalesing operator php 7:      isset($filters['search']) ? $filters['search'] : false        ==>        $filters['search'] ?? false
         $query->when($filters['search'] ?? false, function ($query, $search) {
             return $query->where('title', 'like', '%' . $search . '%')
                 ->orWhere('body', 'like', '%' . $search . '%');
         });
-
 
         // * SCOPE QUERY
         // category
@@ -43,6 +39,7 @@ class Post extends Model
                 $query->where('slug', $category);
             });
         });
+
         // author
         $query->when($filters['author'] ?? false, function ($query, $author) {
             return $query->whereHas('author', function ($query) use ($author) {

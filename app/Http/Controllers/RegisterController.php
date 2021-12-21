@@ -12,7 +12,6 @@ class RegisterController extends Controller
     {
         return view('register.index', [
             'title' => 'Register',
-            'active' => 'register'
         ]);
     }
 
@@ -24,6 +23,8 @@ class RegisterController extends Controller
             'email' => 'required|email:dns|unique:users',
             'password' => 'required|min:8|max:255',
         ]);
+
+        // hashing password
         $validate['password'] = \Hash::make($validate['password']);
         User::create($validate);
 

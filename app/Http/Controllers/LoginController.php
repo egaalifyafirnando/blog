@@ -9,10 +9,7 @@ class LoginController extends Controller
 {
     public function index()
     {
-        return view('login.index', [
-            'title' => 'Login',
-            'active' => 'login'
-        ]);
+        return view('login.index', ['title' => 'Login']);
     }
 
     public function authenticate(Request $request)
@@ -27,7 +24,6 @@ class LoginController extends Controller
 
             return redirect()->intended('dashboard');
         }
-
         return back()->with('loginError', 'Login failed!');
     }
 
