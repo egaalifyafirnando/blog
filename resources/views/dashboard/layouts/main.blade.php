@@ -20,6 +20,9 @@
     <!-- Custom styles for this template -->
     <link href="/css/dashboard.css" rel="stylesheet">
 
+    {{-- google fonts --}}
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
     {{-- trix editor --}}
     <link rel="stylesheet" type="text/css" href="/css/trix.css">
     <script type="text/javascript" src="/js/trix.js"></script>
@@ -27,6 +30,10 @@
     <style>
         trix-toolbar [data-trix-button-group="file-tools"] {
             display: none;
+        }
+
+        body {
+            font-family: "Nunito", sans-serif;
         }
 
     </style>

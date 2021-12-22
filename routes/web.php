@@ -30,13 +30,6 @@ Route::get('/', function () {
     ]);
 });
 
-// route about
-Route::get('/about', function () {
-    return view('about', [
-        'title' => 'About',
-    ]);
-});
-
 // route post
 Route::get('/posts', [PostController::class, 'index']);
 Route::get('posts/{post:slug}', [PostController::class, 'show']);

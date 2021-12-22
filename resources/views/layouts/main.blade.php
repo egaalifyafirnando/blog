@@ -16,7 +16,18 @@
     {{-- icon --}}
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css">
 
-    <title>MY BLOG | {{ $title }}</title>
+    {{-- google fonts --}}
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <title>GO-BLOG | {{ $title }}</title>
+
+
+    <style>
+        body {
+            font-family: "Nunito", sans-serif;
+        }
+
+    </style>
 </head>
 
 <body>
