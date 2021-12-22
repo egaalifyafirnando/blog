@@ -5,7 +5,7 @@
         <h1 class="h2">Post Categories</h1>
     </div>
     <div class="table-responsive">
-        <a class="btn btn-primary mb-3" href="/dashboard/posts/create">Create new category</a>
+        <a class="btn btn-danger rounded-pill mb-3" href="/dashboard/categories/create">Create new category</a>
         @if (session()->has('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}
@@ -25,9 +25,7 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $category->name }}</td>
                         <td>
-                            <a class="badge bg-info mx-1" href="/dashboard/categories/{{ $category->slug }}"><span
-                                    data-feather="eye"></span></a>
-                            <a class="badge bg-warning mx-1" href="/dashboard/categories/{{ $category->slug }}/edit"><span
+                            <a class="badge bg-danger mx-1" href="/dashboard/categories/{{ $category->slug }}/edit"><span
                                     data-feather="edit"></span></a>
                             <form class="d-inline" action="/dashboard/categories/{{ $category->slug }}"
                                 method="post">
