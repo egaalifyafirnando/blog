@@ -44,9 +44,10 @@
                         @enderror
                     </div>
 
-                    <button class="w-100 btn btn-lg btn-primary mt-2" type="submit">Login</button>
+                    <button class="w-100 btn btn-lg btn-danger mt-2" type="submit">Login</button>
                 </form>
-                <small class="d-block text-center mt-3">Not registered? <a href="/register">Register now</a></small>
+                <small class="d-block text-center mt-3">Not registered? <a class=" text-danger" href="/register">Register
+                        now</a></small>
             </main>
         </div>
     </div>

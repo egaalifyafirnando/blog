@@ -58,7 +58,7 @@
                 <input id="body" type="hidden" name="body" required value="{{ old('body') }}">
                 <trix-editor input="body"></trix-editor>
             </div>
-            <button type="submit" class="btn btn-primary">Create Post</button>
+            <button type="submit" class="btn btn-danger">Create Post</button>
         </form>
     </div>
 

@@ -27,6 +27,20 @@
             font-family: "Nunito", sans-serif;
         }
 
+        .page-item.active .page-link {
+            color: #fff;
+            background-color: #fd0d0d !important;
+            border-color: #ffffff !important;
+        }
+
+        .page-link {
+            color: #787878;
+        }
+
+        .page-link:hover {
+            color: #484848;
+        }
+
     </style>
 </head>
 

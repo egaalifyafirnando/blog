@@ -19,7 +19,7 @@
                 <div class="input-group mb-3">
                     <input type="text" class="form-control" placeholder="Search post..." name="search">
                     <div class="input-group-append">
-                        <button class="btn btn-primary" type="submit">Search</button>
+                        <button class="btn btn-danger" type="submit">Search</button>
                     </div>
                 </div>
             </form>
@@ -46,18 +46,20 @@
                 <p>
                     <small class="text-muted">
                         By
-                        <a class="text-decoration-none" href="/posts?author={{ $posts[0]->author->username }}">
+                        <a class="text-decoration-none text-danger"
+                            href="/posts?author={{ $posts[0]->author->username }}">
                             {{ $posts[0]->author->name }}
                         </a>
                         in
-                        <a class="text-decoration-none" href="/posts?category={{ $posts[0]->category->slug }}">
+                        <a class="text-decoration-none text-danger"
+                            href="/posts?category={{ $posts[0]->category->slug }}">
                             {{ $posts[0]->category->name }}
                         </a>,
                         {{ $posts[0]->created_at->diffForHumans() }}
                     </small>
                 </p>
                 <p class="card-text">{{ $posts[0]->excerpt }}</p>
-                <a class="btn btn-primary" href="/posts/{{ $posts[0]->slug }}">Read more</a>
+                <a class="btn btn-danger" href="/posts/{{ $posts[0]->slug }}">Read more</a>
             </div>
         </div>
 
@@ -87,7 +89,7 @@
                                 <p>
                                     <small class="text-muted">
                                         By
-                                        <a class="text-decoration-none"
+                                        <a class="text-decoration-none text-danger"
                                             href="/posts?author={{ $post->author->username }}">
                                             {{ $post->author->name }}
                                         </a>,
@@ -95,7 +97,7 @@
                                     </small>
                                 </p>
                                 <p class="card-text">{{ $post->excerpt }}</p>
-                                <a class="btn btn-primary" href="/posts/{{ $post->slug }}">
+                                <a class="btn btn-danger" href="/posts/{{ $post->slug }}">
                                     Read more
                                 </a>
                             </div>
@@ -110,7 +112,7 @@
 
 
     {{-- pagination --}}
-    <div class="d-flex justify-content-center text-center">
+    <div class="d-flex justify-content-center text-center danger">
         {{ $posts->links() }}
     </div>
 

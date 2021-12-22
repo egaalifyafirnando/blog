@@ -2,14 +2,15 @@
     <div class="position-sticky pt-3">
         <ul class="nav flex-column">
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}" aria-current="page"
+                <a class="nav-link {{ Request::is('dashboard') ? 'active text-danger' : '' }}" aria-current="page"
                     href="/dashboard">
                     <span data-feather="home"></span>
                     Dashboard
                 </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link {{ Request::is('dashboard/posts*') ? 'active' : '' }}" href="/dashboard/posts">
+                <a class="nav-link {{ Request::is('dashboard/posts*') ? 'active text-danger' : '' }}"
+                    href="/dashboard/posts">
                     <span data-feather="file-text"></span>
                     My Posts
                 </a>
@@ -22,8 +23,8 @@
             </h6>
             <ul class="nav flex-column">
                 <li class="nav-item">
-                    <a class="nav-link {{ Request::is('dashboard/categories*') ? 'active' : '' }}" aria-current="page"
-                        href="/dashboard/categories">
+                    <a class="nav-link {{ Request::is('dashboard/categories*') ? 'active text-danger' : '' }}"
+                        aria-current="page" href="/dashboard/categories">
                         <span data-feather="grid"></span>
                         Post Categories
                     </a>

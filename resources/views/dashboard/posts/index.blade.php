@@ -5,7 +5,7 @@
         <h1 class="h2">My Posts</h1>
     </div>
     <div class="table-responsive">
-        <a class="btn btn-primary mb-3" href="/dashboard/posts/create">Create new post</a>
+        <a class="btn btn-danger mb-3 rounded-pill" href="/dashboard/posts/create">Create new post</a>
         @if (session()->has('success'))
             <div class="alert alert-success" role="alert">
                 {{ session('success') }}
@@ -27,9 +27,9 @@
                         <td>{{ $post->title }}</td>
                         <td>{{ $post->category->name }}</td>
                         <td>
-                            <a class="badge bg-info" href="/dashboard/posts/{{ $post->slug }}"><span
+                            <a class="badge bg-danger" href="/dashboard/posts/{{ $post->slug }}"><span
                                     data-feather="eye"></span></a>
-                            <a class="badge bg-warning" href="/dashboard/posts/{{ $post->slug }}/edit"><span
+                            <a class="badge bg-danger" href="/dashboard/posts/{{ $post->slug }}/edit"><span
                                     data-feather="edit"></span></a>
                             <form class="d-inline" action="/dashboard/posts/{{ $post->slug }}" method="post">
                                 @csrf

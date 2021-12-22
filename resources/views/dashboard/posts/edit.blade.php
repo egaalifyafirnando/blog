@@ -66,7 +66,7 @@
                 <input id="body" type="hidden" name="body" required value="{{ old('body', $post->body) }}">
                 <trix-editor input="body"></trix-editor>
             </div>
-            <button type="submit" class="btn btn-primary">Update Post</button>
+            <button type="submit" class="btn btn-danger rounded-pill">Update Post</button>
         </form>
     </div>
 

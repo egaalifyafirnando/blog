@@ -2,8 +2,8 @@
 
 @section('container')
     <div class="row justify-content-center">
-        <div class="col-lg-6">
-            <h1 class="h3 mb-3 fw-normal text-center">Registration Form</h1>
+        <div class="col-lg-6 mt-3">
+            <h1 class="h3 my-3 fw-normal text-center">Registration Form</h1>
 
             <main class="form-registration">
                 {{-- <img class="mb-4" src="../assets/brand/bootstrap-logo.svg" alt="" width="72" height="57"> --}}
@@ -50,9 +50,10 @@
                         @enderror
                     </div>
 
-                    <button class="w-100 btn btn-lg btn-primary mt-3" type="submit">Register</button>
+                    <button class="w-100 btn btn-lg btn-danger mt-3" type="submit">Register</button>
                 </form>
-                <small class="d-block text-center mt-3">Already registered? <a href="/login">Login</a></small>
+                <small class="d-block text-center mt-3">Already registered? <a class="text-danger"
+                        href="/login">Login</a></small>
             </main>
         </div>
     </div>
