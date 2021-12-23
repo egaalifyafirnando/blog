@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Cviebrock\EloquentSluggable\Services\SlugService;
 
 class AdminCategoryController extends Controller
@@ -40,7 +41,12 @@ class AdminCategoryController extends Controller
         $validatedData = $request->validate([
             'name' => 'required|max:255',
             'slug' => 'required|unique:categories',
+            'image' => 'image|file|max:1024'
         ]);
+
+        if ($request->file('image')) {
+            $validatedData['image'] = $request->file('image')->store('category-images');
+        }
 
         Category::create($validatedData);
         return redirect('/dashboard/categories')->with('success', 'New category has been added!');
@@ -65,7 +71,7 @@ class AdminCategoryController extends Controller
      */
     public function edit(Category $category)
     {
-        //
+        return view('dashboard.categories.edit', ['category' => $category]);
     }
 
     /**
@@ -77,7 +83,32 @@ class AdminCategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $rules = ([
+            'name' => 'required|max:255',
+            'image' => 'image|file|max:1024'
+        ]);
+
+        // jika request slug tidak sama dengan slug yang ada di database, maka buat unik
+        if ($request->slug != $category->slug) {
+            $rules['slug'] = 'required|unique:categories';
+        }
+
+        // validasi data request
+        $validatedData = $request->validate($rules);
+
+        // jika terdapat request berupa image
+        if ($request->file('image')) {
+            // jika terdapat image lama
+            if ($request->oldImage) {
+                // maka delete gambar lama
+                Storage::delete($request->oldImage);
+            }
+            // maka data image yang telah tervalidasi simpan ke folder post-images
+            $validatedData['image'] = $request->file('image')->store('category-images');
+        }
+
+        Category::where('id', $category->id)->update($validatedData);
+        return redirect('dashboard/categories')->with('success', 'Category has been updated!');
     }
 
     /**
@@ -88,7 +119,14 @@ class AdminCategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        //
+        // jika terdapat image
+        if ($category->image) {
+            // maka delete image
+            Storage::delete($category->image);
+        }
+        $category = Category::findOrFail($category->id);
+        $category->delete();
+        return redirect('/dashboard/categories')->with('success', 'Category has been deleted!');
     }
 
     // sluggable

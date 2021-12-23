@@ -17,6 +17,12 @@ class Category extends Model
         return $this->hasMany(Post::class);
     }
 
+    // model binding default untuk parameter url
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     public function sluggable(): array
     {
         return [
