@@ -1,7 +1,6 @@
 @extends('layouts.main')
 
 @section('container')
-
     <div class="container mb-5">
         <div class="row justify-content-center">
             <div class="col-md-10">

@@ -24,7 +24,6 @@
                     <img src="https://source.unsplash.com/1200x400/?{{ $post->category->name }}"
                         class="img-fluid rounded">
                 @endif
-
                 <article class="my-5">
                     {!! $post->body !!}
                 </article>

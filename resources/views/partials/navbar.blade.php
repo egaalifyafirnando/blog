@@ -17,7 +17,6 @@
                         href="/categories">Categories</a>
                 </li>
             </ul>
-
             <ul class="navbar-nav ms-auto">
                 @auth
                     <li class="nav-item dropdown">

@@ -2,7 +2,6 @@
 
 @section('container')
     <h1 class="py-3 mb-3 text-center">{{ $title }}</h1>
-
     <div class="row justify-content-center mb-3">
         <div class="col-md-6">
             {{-- form search feature --}}
@@ -17,9 +16,10 @@
 
                 {{-- search --}}
                 <div class="input-group mb-3">
-                    <input type="text" class="form-control" placeholder="Search post..." name="search">
+                    <input type="text" class="form-control" placeholder="Search post..." name="search"
+                        style="border-radius: 20px 0 0 20px;">
                     <div class="input-group-append">
-                        <button class="btn btn-danger" type="submit">Search</button>
+                        <button class="btn btn-danger" type="submit" style="border-radius: 0 20px 20px 0;">Search</button>
                     </div>
                 </div>
             </form>
@@ -38,7 +38,6 @@
                 <img src="https://source.unsplash.com/1200x400/?{{ $posts[0]->category->name }}" class="card-img-top"
                     alt="{{ $posts[0]->category->name }}">
             @endif
-
             <div class="card-body text-center">
                 <h3 class="card-title"><a class="text-decoration-none text-dark"
                         href="/posts/{{ $posts[0]->slug }}">{{ $posts[0]->title }}</a>
@@ -59,11 +58,9 @@
                     </small>
                 </p>
                 <p class="card-text">{{ $posts[0]->excerpt }}</p>
-                <a class="btn btn-danger" href="/posts/{{ $posts[0]->slug }}">Read more</a>
+                <a class="btn btn-danger rounded-pill" href="/posts/{{ $posts[0]->slug }}">Read more</a>
             </div>
         </div>
-
-
 
         {{-- post list --}}
         <div class="container">
@@ -71,7 +68,7 @@
                 @foreach ($posts->skip(1) as $post)
                     <div class="col-md-4 mb-3">
                         <div class="card shadow" style="min-height: 500px;">
-                            <div class="position-absolute px-3 py-2" style="background-color: rgba(0, 0, 0, 0.7);">
+                            <div class="position-absolute px-3 py-2 rounded" style="background-color: rgba(0, 0, 0, 0.7);">
                                 <a class="text-decoration-none text-white"
                                     href="/posts?category={{ $post->category->slug }}">{{ $post->category->name }}</a>
                             </div>
@@ -97,7 +94,7 @@
                                     </small>
                                 </p>
                                 <p class="card-text">{{ $post->excerpt }}</p>
-                                <a class="btn btn-danger" href="/posts/{{ $post->slug }}">
+                                <a class="btn btn-danger rounded-pill" href="/posts/{{ $post->slug }}">
                                     Read more
                                 </a>
                             </div>
@@ -110,10 +107,8 @@
         <p class="text-center display-3">No post found !!</p>
     @endif
 
-
     {{-- pagination --}}
     <div class="d-flex justify-content-center text-center danger">
         {{ $posts->links() }}
     </div>
-
 @endsection
